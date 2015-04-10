@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>pb-example</artifactId>
+        <groupId>com.elong.pb.example</groupId>
+        <version>1.0.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>pb-example-service</artifactId>
+    <packaging>jar</packaging>
+    <name>pb-example service</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.elong.pb.example</groupId>
+            <artifactId>pb-example-dao</artifactId>
+            <version>1.0.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.elong.pb.common</groupId>
+            <artifactId>pb-common-service</artifactId>
+            <version>${pb.common.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.elong.pb.common</groupId>
+            <artifactId>pb-common-test</artifactId>
+            <version>${pb.common.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

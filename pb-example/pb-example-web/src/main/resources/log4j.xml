@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%11p] - %35.35c.%15.15M %5L %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- 集中配置日志appender***开始*** -->
+    <appender name="LOGGER_ALL" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <param name="Append" value="true"/>
+        <param name="file" value="${pb-example.log.path}/platform/all.log"/>
+        <layout class="com.elong.pb.common.util.log.log4j.PlatformLayout"/>
+    </appender>
+    <appender name="LOGGER_BUSINESS" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <param name="Append" value="true"/>
+        <param name="file" value="${pb-example.log.path}/platform/business.log"/>
+        <layout class="com.elong.pb.common.util.log.log4j.PlatformLayout"/>
+    </appender>
+    <appender name="LOGGER_ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <param name="Append" value="true"/>
+        <param name="file" value="${pb-example.log.path}/platform/error.log"/>
+        <layout class="com.elong.pb.common.util.log.log4j.PlatformLayout"/>
+    </appender>
+    <appender name="LOGGER_PERFORMANCE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <param name="Append" value="true"/>
+        <param name="file" value="${pb-example.log.path}/platform/performance.log"/>
+        <layout class="com.elong.pb.common.util.log.log4j.PlatformLayout"/>
+    </appender>
+    <appender name="LOGGER_MESSAGE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <param name="Append" value="true"/>
+        <param name="file" value="${pb-example.log.path}/platform/message.log"/>
+        <layout class="com.elong.pb.common.util.log.log4j.PlatformLayout"/>
+    </appender>
+    <!-- 集中配置日志appender***结束*** -->
+
+    <appender name="FILE-DEBUG" class="org.apache.log4j.FileAppender">
+        <param name="Append" value="true"/>
+        <param name="file" value="${pb-example.log.path}/pb-example-debug.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%11p] - %35.35c.%15.15M %5L %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <param name="Append" value="true"/>
+        <param name="file" value="${pb-example.log.path}/pb-example.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%11p] - %35.35c.%15.15M %5L %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="INFO"/>
+        </filter>
+    </appender>
+
+    <appender name="FILE-SQL" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <param name="file" value="${pb-example.log.path}/pb-example-sql.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%11p] - %35.35c.%15.15M %5L %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- 集中配置日志category***开始*** -->
+    <category name="PLATFORM_LOGGER" additivity="true">
+        <priority value="ALL"/>
+        <appender-ref ref="LOGGER_ALL"/>
+    </category>
+    <category name="PLATFORM_LOGGER.BUSINESS" additivity="true">
+        <priority value="ALL"/>
+        <appender-ref ref="LOGGER_BUSINESS"/>
+    </category>
+    <category name="PLATFORM_LOGGER.ERROR" additivity="true">
+        <priority value="ALL"/>
+        <appender-ref ref="LOGGER_ERROR"/>
+    </category>
+    <category name="PLATFORM_LOGGER.PERFORMANCE" additivity="false">
+        <priority value="ALL"/>
+        <appender-ref ref="LOGGER_PERFORMANCE"/>
+    </category>
+    <category name="PLATFORM_LOGGER.MESSAGE" additivity="true">
+        <priority value="ALL"/>
+        <appender-ref ref="LOGGER_MESSAGE"/>
+    </category>
+    <!-- 集中配置日志category***结束*** -->
+
+    <category name="com.elong.pb" additivity="false">
+        <priority value="${pb-example.log.level}"/>
+        <appender-ref ref="FILE"/>
+    </category>
+
+    <root>
+        <priority value="${pb-example.log.level}"/>
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE-DEBUG"/>
+    </root>
+</log4j:configuration>
