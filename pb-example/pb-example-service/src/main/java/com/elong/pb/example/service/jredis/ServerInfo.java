@@ -1,0 +1,76 @@
+package com.elong.pb.example.service.jredis;
+
+import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+
+/**
+ * project：pb-monitor-common
+ * Date: 15/4/24
+ * Time: 15:14
+ * file: ServerInfo.java
+ *
+ * @author dewei.tian@corp.elong.com
+ */
+public class ServerInfo {
+    private String host;
+    private int port;
+    private int timeout;
+    private String password;
+    private GenericObjectPoolConfig poolConfig;
+
+    public ServerInfo(GenericObjectPoolConfig poolConfig, String host, int port,
+                      int timeout, String password) {
+        this.poolConfig = poolConfig;
+        this.host = host;
+        this.port = port;
+        this.timeout = timeout;
+        this.password = password;
+    }
+
+    public String generateKey() {
+        return host + "_" + port + "_" + timeout + "_" + password;
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public int getTimeout() {
+        return timeout;
+    }
+    public void setTimeout(int timeout) {
+        this.timeout = timeout;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public GenericObjectPoolConfig getPoolConfig() {
+        return poolConfig;
+    }
+
+    public void setPoolConfig(GenericObjectPoolConfig poolConfig) {
+        this.poolConfig = poolConfig;
+    }
+
+    @Override
+    public String toString() {
+        return "host=" + host + ",port=" + port + ",timeout=" + timeout + ",password=" + password;
+    }
+}
